@@ -14,7 +14,7 @@ Overall, the Mass-Mail Dispatcher offers a comprehensive solution for managing b
 
 ## Authors
 
-- [@Dhruv-baraiya](https://github.com/Dhruv-Baraiya/Projects)
+- [@Dhruv-baraiya](https://github.com/Dhruv-Baraiya)
 
 
 ## Installation
