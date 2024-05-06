@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mail Dispatcher</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css">
+</head>
+
+<body>
+    <div class="bg">
+        <div class="select animated fadeInDown delay-4s">
+            <div class="container">
+                <h1 id="head">Mass-Mail Dispatcher</h1>
+                <label for="csvfile">Select CSV File</label>
+                <input type="file" id="csvfile" accept="text/csv" required>
+                <div class="mailInfo">
+                    <form id="csvform" name="csvform" ng-submit="reset" novalidate>
+                        <h2 id="box-heading">WRITE YOUR EMAIL HERE</h2>
+                        <p><input type="text" name="subject" id="subject" placeholder="Subject" ng-model="subject"
+                                required></p>
+                        <div ng-show="csvform.subject.$touched && csvform.subject.$invalid"
+                            style="color: red; text-align: left;">
+                            <span ng-show="csvform.subject.$error.required">Subject is required.</span>
+                        </div>
+                        <p><textarea id="msg" name="msg" placeholder="Body" ng-model="msg" required></textarea></p>
+                        <div ng-show="csvform.msg.$touched && csvform.msg.$invalid"
+                            style="color: red; text-align: left;">
+                            <span ng-show="csvform.msg.$error.required">Message is required.</span>
+                        </div>
+                        <p><button type="submit" id="submit" style="font-weight: bold;"
+                                ng-disabled="csvform.$invalid" ng-click="buttonClicked = true">Send</button></p>
+                    </form>
+                    <div id="resultvalid" style="color: green;"></div>
+                    <div id="resultinvalid"  style="color: red;"></div>
+                </div>
+                <div class="loader" id="loader" ng-hide="true" ng-show="buttonClicked">
+                    <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="tables">
+            <div class="valTab">
+                <table id="val">
+                    <tr>
+                        <td>
+                            <h2>Valid Emails: <span id="valCount"></span></h2>
+                            <div id="validEmailsSection" style="display: none;">
+                                <pre id="validEmails"></pre>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="invalTab">
+                <table id="inval">
+                    <tr>
+                        <td>
+                            <h2>Invalid Emails: <span id="invalCount"></span></h2>
+                            <div id="invalidEmailsSection" style="display: none;">
+                                <pre id="invalidEmails"></pre>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script>
+        var app = angular.module('myApp', []);
+    </script>
+</body>
+
+</html>
